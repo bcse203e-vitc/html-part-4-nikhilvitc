@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Form</title>
+    <style>
+        .field-preview {
+            margin-bottom: 10px;
+        }
+        .field-preview input {
+            width: 200px;
+        }
+        .btn {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #formPreview {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customize Your Form</h1>
+    <form id="formBuilder">
+        <label for="formName">Form Name:</label>
+        <input type="text" id="formName" name="formName"><br><br>
+
+        <label for="numFields">Number of Input Fields:</label>
+        <input type="number" id="numFields" name="numFields" min="1" max="10"><br><br>
+
+        <label for="fieldType">Field Type:</label>
+        <select id="fieldType" name="fieldType">
+            <option value="text">Text</option>
+            <option value="email">Email</option>
+            <option value="number">Number</option>
+            <option value="date">Date</option>
+        </select><br><br>
+
+        <label for="fieldLabel">Field Label:</label>
+        <input type="text" id="fieldLabel" name="fieldLabel"><br><br>
+
+        <button type="button" class="btn" onclick="addField()">Add Field</button>
+    </form>
+
+    <h2>Preview of Form</h2>
+    <form id="formPreview"></form>
+
+    <script>
+        let fieldCount = 0;
+
+        function addField() {
+            const numFields = document.getElementById('numFields').value;
+            if (fieldCount < numFields) {
+                const fieldType = document.getElementById('fieldType').value;
+                const fieldLabel = document.getElementById('fieldLabel').value;
+
+                const formPreview = document.getElementById('formPreview');
+                const fieldPreview = document.createElement('div');
+                fieldPreview.className = 'field-preview';
+                
+                const label = document.createElement('label');
+                label.innerText = fieldLabel;
+                const input = document.createElement('input');
+                input.type = fieldType;
+
+                fieldPreview.appendChild(label);
+                fieldPreview.appendChild(input);
+
+                const upButton = document.createElement('button');
+                upButton.className = 'btn';
+                upButton.innerText = 'Move Up';
+                upButton.type = 'button';
+                upButton.onclick = function() {
+                    if (fieldPreview.previousElementSibling) {
+                        formPreview.insertBefore(fieldPreview, fieldPreview.previousElementSibling);
+                    }
+                };
+
+                const downButton = document.createElement('button');
+                downButton.className = 'btn';
+                downButton.innerText = 'Move Down';
+                downButton.type = 'button';
+                downButton.onclick = function() {
+                    if (fieldPreview.nextElementSibling) {
+                        formPreview.insertBefore(fieldPreview, fieldPreview.nextElementSibling.nextElementSibling);
+                    }
+                };
+
+                fieldPreview.appendChild(upButton);
+                fieldPreview.appendChild(downButton);
+                formPreview.appendChild(fieldPreview);
+
+                fieldCount++;
+            }
+        }
+    </script>
+</body>
+</html>
