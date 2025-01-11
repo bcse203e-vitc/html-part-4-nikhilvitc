@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking</title>
+</head>
+<body>
+    <h1>Hotel Room Booking</h1>
+    <form id="bookingForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="cifo">Contact Information:</label>
+        <input type="email" id="cifo" name="cifo" required><br><br>
+
+        <label for="checkIn">Check-in Date:</label>
+        <input type="date" id="checkIn" name="checkIn" required><br><br>
+
+        <label for="checkOut">Check-out Date:</label>
+        <input type="date" id="checkOut" name="checkOut" required><br><br>
+
+        <label for="ng">Number of Guests:</label>
+        <input type="number" id="ng" name="ng" min="1" required><br><br>
+
+        <label for="roomType">Room Type:</label>
+        <select id="roomType" name="roomType" required>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="suite">Suite</option>
+        </select><br><br>
+
+        <label>Additional Services:</label><br>
+        <input type="checkbox" id="breakfast" name="services" value="Breakfast">
+        <label for="breakfast">Breakfast</label><br>
+        <input type="checkbox" id="airportPickup" name="services" value="Airport Pickup">
+        <label for="airportPickup">Airport Pickup</label><br><br>
+
+        <label for="tc">Total Cost:</label>
+        <input type="text" id="tc" name="tc" readonly><br><br>
+
+        <button type="button" onclick="calculateTotal()">Calculate Total Cost</button><br><br>
+
+        <button type="submit">Book Room</button>
+    </form>
+
+    <script>
+        function calculateTotal() {
+            const ng = parseInt(document.getElementById('ng').value);
+            const roomType = document.getElementById('roomType').value;
+            let bc = 0;
+
+            if (roomType === 'single') {
+                bc = 50;
+            } else if (roomType === 'double') {
+                bc = 80;
+            } else if (roomType === 'suite') {
+                bc = 150;
+            }
+
+            let tc = bc * ng;
+
+            if (document.getElementById('breakfast').checked) {
+                tc += 10 * ng; 
+            }
+
+            if (document.getElementById('airportPickup').checked) {
+                tc += 30;  
+            }
+
+            document.getElementById('tc').value = '$' + tc;
+        }
+    </script>
+</body>
+</html>

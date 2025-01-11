@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking Form</title>
+</head>
+<body>
+    <h1>Travel Booking Form</h1>
+    <form id="bookingForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="contactInfo">Contact Information:</label>
+        <input type="email" id="contactInfo" name="contactInfo" required><br><br>
+
+        <label for="destination">Destination:</label>
+        <select id="destination" name="destination" required>
+            <option value="paris">Paris</option>
+            <option value="newYork">New York</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="london">London</option>
+        </select><br><br>
+
+        <label for="travelDates">Travel Dates:</label>
+        <input type="date" id="travelDates" name="travelDates" required><br><br>
+
+        <label for="numberOfTravelers">Number of Travelers:</label>
+        <input type="number" id="numberOfTravelers" name="numberOfTravelers" min="1" required><br><br>
+
+        <label>Travel Class:</label><br>
+        <input type="radio" id="economy" name="travelClass" value="Economy" required>
+        <label for="economy">Economy</label><br>
+        <input type="radio" id="business" name="travelClass" value="Business">
+        <label for="business">Business</label><br>
+        <input type="radio" id="firstClass" name="travelClass" value="First Class">
+        <label for="firstClass">First Class</label><br><br>
+
+        <label for="insurance">Opt for Travel Insurance:</label>
+        <input type="checkbox" id="insurance" name="insurance"><br><br>
+
+        <label for="totalCost">Total Cost:</label>
+        <input type="text" id="totalCost" name="totalCost" readonly><br><br>
+
+        <button type="button" onclick="calculateCost()">Calculate Total Cost</button><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
