@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz</title>
+    <style>
+        #timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Quiz</h1>
+    <form id="quizForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <div>
+            <p>1. What is the capital of France?</p>
+            <input type="radio" id="paris" name="question1" value="Paris" required>
+            <label for="paris">Paris</label><br>
+            <input type="radio" id="berlin" name="question1" value="Berlin">
+            <label for="berlin">Berlin</label><br>
+            <input type="radio" id="madrid" name="question1" value="Madrid">
+            <label for="madrid">Madrid</label><br>
+        </div><br>
+
+        <div>
+            <p>2. Which of these are programming languages?</p>
+            <input type="checkbox" id="python" name="question2" value="Python">
+            <label for="python">Python</label><br>
+            <input type="checkbox" id="java" name="question2" value="Java">
+            <label for="java">Java</label><br>
+            <input type="checkbox" id="html" name="question2" value="HTML">
+            <label for="html">HTML</label><br>
+            <input type="checkbox" id="excel" name="question2" value="Excel">
+            <label for="excel">Excel</label><br>
+        </div><br>
+
+        <div>
+            <p>3. What is the largest planet in our solar system?</p>
+            <input type="radio" id="earth" name="question3" value="Earth" required>
+            <label for="earth">Earth</label><br>
+            <input type="radio" id="jupiter" name="question3" value="Jupiter">
+            <label for="jupiter">Jupiter</label><br>
+            <input type="radio" id="saturn" name="question3" value="Saturn">
+            <label for="saturn">Saturn</label><br>
+        </div><br>
+
+        <button type="submit">Submit Quiz</button>
+    </form>
+
+    <div id="timer">Time Remaining: <span id="time"></span></div>
+
+    <script>
+        let timeRemaining = 5 * 60; // 5 minutes in seconds
+        const timerElement = document.getElementById("time");
+
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            timeRemaining--;
+
+            if (timeRemaining < 0) {
+                clearInterval(timerInterval);
+                alert("Time's up! The quiz will be submitted automatically.");
+                document.getElementById("quizForm").submit();
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
