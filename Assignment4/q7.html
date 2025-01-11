@@ -47,31 +47,5 @@
         <button type="submit">Submit</button>
     </form>
 
-    <script>
-        function calculateCost() {
-            const numberOfTravelers = parseInt(document.getElementById('numberOfTravelers').value);
-            const travelClass = document.querySelector('input[name="travelClass"]:checked');
-            if (!travelClass) {
-                alert('Please select a travel class.');
-                return;
-            }
-
-            let costPerTraveler = 0;
-            if (travelClass.value === 'Economy') {
-                costPerTraveler = 100;
-            } else if (travelClass.value === 'Business') {
-                costPerTraveler = 200;
-            } else if (travelClass.value === 'First Class') {
-                costPerTraveler = 300;
-            }
-
-            let totalCost = costPerTraveler * numberOfTravelers;
-            if (document.getElementById('insurance').checked) {
-                totalCost += 50 * numberOfTravelers;
-            }
-
-            document.getElementById('totalCost').value = '$' + totalCost;
-        }
-    </script>
 </body>
 </html>
